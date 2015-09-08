@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+<form-validation>
+ 
+  <formset>
+		<form name="registerform">
+	       <field property="emailid" depends="required,email">
+	     <!--    <msg name="required" key="errors.user.registration.email"/> 
+	       <msg name="email" key="errors.user.registration.email.valid"/> 
+	     -->  </field>
+	       <field property="userId" depends="required">
+	         <msg name="required" key="errors.user.registration.userId"/>	         
+	       </field>
+	       <field property="password" depends="required">
+	        <msg name="required" key="errors.user.registration.password"/> 
+	       </field>
+	       <field property="cpassword" depends="required,validwhen">
+	        <msg name="required" key="errors.user.registration.password.confirm"/> 
+	        <msg name="validwhen" key="errors.user.registration.password.match" />
+		       <var>
+		          <var-name>test</var-name>
+		          <var-value>(password==cpassword)</var-value>
+		       </var>
+	       </field>
+	       <field property="firstname" depends="required">
+	        <msg name="required" key="errors.user.registration.first.name"/> 
+	       </field>
+	       <field property="lastname" depends="required">
+	        <msg name="required" key="errors.user.registration.last.name"/> 
+	       </field>
+	       <field property="profession" depends="required">
+	        <msg name="required" key="errors.user.registration.profession"/> 
+	       </field>
+	       <field property="institution" depends="required">
+	        <msg name="required" key="errors.user.registration.institution"/> 
+	       </field>	       
+	       <field property="gender" depends="required">
+	        <msg name="required" key="errors.user.registration.gender"/> 
+	       </field>
+	       <field property="submitError" depends="validwhen">
+	         <msg name="validwhen" key="errors.user.registration.fail" />
+	       <var>
+	          <var-name>test</var-name>
+	           <var-value>((emailid!=null) and ((password!=null) and ((cpassword!=null) and ((firstname!=null) and ((lastname!=null) and (gender!=null))))))</var-value>
+	       </var>
+	      </field>
+        </form>
+        <form name="loginform">
+	       <field property="username" depends="required">
+	        <msg name="required" key="errors.login.name"/> 
+	       </field>
+	       <field property="password" depends="required">
+	        <msg name="required" key="errors.login.password"/> 
+	       </field>
+	       <field property="submitError" depends="validwhen">
+	         <msg name="validwhen" key="errors.login.fail" />
+	       <var>
+	          <var-name>test</var-name>
+	          <var-value>((username!=null) and (password!=null))</var-value>
+	       </var>
+	      </field>
+        </form>
+  </formset>
+
+</form-validation>
